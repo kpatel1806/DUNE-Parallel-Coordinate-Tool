@@ -1,0 +1,95 @@
+<!doctype html>
+<title>Dune - Parallel Coordinates Report</title>
+
+<link rel="stylesheet" href="lib/slickgrid/slick.grid.css" type="text/css"/>
+<link rel="stylesheet" href="lib/slickgrid/jquery-ui-1.8.16.custom.css" type="text/css"/>
+<link rel="stylesheet" href="lib/slickgrid/examples.css" type="text/css"/>
+<link rel="stylesheet" href="lib/slickgrid/slick.pager.css" type="text/css"/>
+<script src="lib/slickgrid/jquery-1.7.min.js"></script>
+<script src="lib/slickgrid/jquery.event.drag-2.0.min.js"></script>
+<script src="lib/slickgrid/slick.core.js"></script>
+<script src="lib/slickgrid/slick.grid.js"></script>
+<script src="lib/slickgrid/slick.pager.js"></script>
+<script src="lib/slickgrid/slick.dataview.js"></script>
+
+<link rel="stylesheet" type="text/css" href="./parcoords.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script src="lib/d3.v5.min.js"></script>
+<script>var gconfig;</script>
+<script src="./parcoords.standalone.js"></script>
+
+<body>
+
+  <header class="header">
+    <div class="header-logo">
+      <h2>Dune Engineering</h2>
+    </div>
+    <div class="header-title">
+      <h1>Retail Results Analysis</h1>
+    </div>
+  </header>
+
+  <div class="dashboard-container">
+
+    <div id="parcoords" class="parcoords"></div>
+
+    <div id="controls-sidebar">
+
+      <details class="instructions" open> <summary>Help & Instructions</summary>
+        <ul>
+          <li><b>Filter Data:</b> Click and drag vertically on any axis to create a filter (a "brush").</li>
+          <li><b>Set Baseline:</b> **Double-click** any row in the data table to set it as a persistent baseline.</li>
+          <li><b>Clear Baseline:</b> Use the "Clear Baseline" button to remove the highlighted line.</li>
+          <li><b>Re-order Axes:</b> Click and drag an axis title (e.g., "Roof Construction") to move it.</li>
+          <li><b>Highlight Row:</b> Hover over any row in the data table below to highlight its path in the chart.</li>
+        </ul>
+      </details>
+
+      <div id="summary-panel">
+        <h4>Filtered Summary</h4>
+        <div id="summary-content">
+          <p>No data selected.</p>
+        </div>
+      </div>
+
+      <div id="dropdown" class="multiselect">
+        <div id="selectLabel" class="selectBox" onclick="toggleCheckboxArea()">
+          <select class="form-select">
+            <option> </option>
+          </select>
+          <div class="overSelect"></div>
+        </div>
+        <div id="selectOptions"></div>
+      </div>
+
+      <div id="colorcol">
+        Color by axis
+        <select id="colorselect" class="form-select" onchange="changeColorColumn()">
+        </select>
+      </div>
+
+      <div id="clearbaselinebutton">
+        <button onclick="clearBaseline()">Clear Baseline</button>
+      </div>
+
+      <div id="resetbutton">
+        <button onclick="resetToDefault()">Reset to default</button>
+      </div>
+
+      <div id="downloadfilteredbutton">
+        <button onclick="downloadFilteredData()">Save Filtered as CSV</button>
+      </div>
+
+      <div id="downloadbutton">
+        <button onclick="downloadAllData()">Save All as CSV</button>
+      </div>
+
+      </div> </div> <div id="gridcontainer">
+    <div id="grid"></div>
+    <div id="pager"></div>
+  </div>
+
+</body>
+
+<script src="multiselect.js"></script>
